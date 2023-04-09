@@ -3,6 +3,7 @@ import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
 import '../css/extract-text.css';
 import Highlighter from "react-highlight-words";
+// import { Document, Page, Text } from 'react-pdf';
 
 function App() {
   const [image, setImage] = useState("");
@@ -12,6 +13,8 @@ function App() {
   const [phones, setPhones] = useState([]);
   const [dates, setDates] = useState([]);
   const [creditCards, setCreditCards] = useState([])
+  const [transcript, setTranscript] = useState('');
+  const [fileName, setFileName] = useState('document.pdf');
   // const [pin, setPin] = useState("");
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
@@ -63,6 +66,17 @@ function App() {
     })
   }
 
+  const handleVoiceInput = () => {
+    const recognition = new window.webkitSpeechRecognition();
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setTranscript(transcript);
+    };
+
+    recognition.start();
+  };
+
 console.log(emails)
 console.log(text)
   // Extract patterns using regex
@@ -86,7 +100,7 @@ console.log(text)
           {/* <p> {text} </p> */}
           <Highlighter
     highlightClassName="YourHighlightClass"
-    searchWords={[highlight]}
+    searchWords={[transcript]}
     autoEscape={true}
     textToHighlight= {text}
   />
@@ -139,10 +153,14 @@ console.log(text)
         </div>
 
         <input type="file" onChange={handleChange} />
-        <input type='text' onChange={(event)=>{
-          setHighligh(event.target.value)
+        <input type='text' value={transcript} onChange={(event)=>{
+          setTranscript(event.target.value)
         }} style={{color: "black"}}/>
         <button onClick={handleClick} style={{height:50}}>Convert to text</button>
+        <div>
+      <button onClick={handleVoiceInput}>Start Voice Input</button>
+      <p>{transcript}</p>
+    </div>
       </main>
     </div>
   );

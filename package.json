@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "exceljs": "^4.3.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
+    "react-csv": "^2.2.2",
+    "react-pdf": "^6.2.2"
+  }
+}
