@@ -18,13 +18,13 @@ function App() {
   // const [pin, setPin] = useState("");
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
-
+  const [boxes, setBoxes] = useState([]);
   // Regex patterns to search for email, phone, date, and credit card number
   const emailRegex = /([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9._-]+)/g;
   const phoneRegex = /\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/g;
   const dateRegex = /([0-9]{4}-[0-9]{2}-[0-9]{2})/g;
   const creditCardRegex = /([0-9]{4}-){3}[0-9]{4}/g;
- 
+
   const handleChange = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]))
     // setImage(`${window.location.origin}/${event.target.files[0].name}`);
@@ -32,39 +32,54 @@ function App() {
   }
 
   const handleClick = () => {
-    
+
     const canvas = canvasRef.current;
     canvas.width = imageRef.current.width;
     canvas.height = imageRef.current.height;
     const ctx = canvas.getContext('2d');
-
+  
     ctx.drawImage(imageRef.current, 0, 0);
     ctx.putImageData(preprocessImage(canvas),0,0);
     const dataUrl = canvas.toDataURL("image/jpeg");
   
     Tesseract.recognize(
       dataUrl,'eng',
-      { 
-        logger: m => console.log(m) 
+      {
+        logger: m => console.log(m)
       }
     )
-    .catch (err => {
-      console.error(err);
-    })
-    .then(result => {
-      console.log(result)
-      // Get Confidence score
-      let confidence = result.confidence
-      // Get full output
-      let tex = JSON.stringify(result.data.text)
-      let em = JSON.stringify(tex).match(emailRegex)
-      setText(tex);
-      setEmails(JSON.stringify(result.data.text).match(emailRegex))
-      setPhones(JSON.stringify(result.data.text).match(phoneRegex))
-      setDates(JSON.stringify(result.data.text).match(dateRegex))
-      setCreditCards(JSON.stringify(result.data.text).match(creditCardRegex))
-    })
-  }
+      .catch (err => {
+        console.error(err);
+      })
+      .then(result => {      
+        console.log(result)
+        // Get Confidence score
+        let confidence = result.confidence
+        // Get full output
+        let tex = JSON.stringify(result.data.text)
+        let em = JSON.stringify(tex).match(emailRegex)
+        setText(tex);
+        setEmails(JSON.stringify(result.data.text).match(emailRegex))
+        setPhones(JSON.stringify(result.data.text).match(phoneRegex))
+        setDates(JSON.stringify(result.data.text).match(dateRegex))
+        setCreditCards(JSON.stringify(result.data.text).match(creditCardRegex))
+
+        result.data.words.forEach(function(item) {
+          if ((item.text).indexOf(highlight) !== -1) {
+            // boxes.push(item.bbox)
+            setBoxes([...boxes, item.bbox])
+          } 
+        });
+        boxes.forEach(box => {
+          ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
+          ctx.strokeStyle = "red";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          console.log(box.x0);
+        })
+        ;
+      });
+  };
 
   const handleVoiceInput = () => {
     const recognition = new window.webkitSpeechRecognition();
