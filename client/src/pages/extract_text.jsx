@@ -3,18 +3,19 @@ import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
 import '../css/extract-text.css';
 import Highlighter from "react-highlight-words";
-// import { Document, Page, Text } from 'react-pdf';
+import { saveAs } from "file-saver";
+import { pdf, Document, Page,StyleSheet,View,Text } from "@react-pdf/renderer";
+
 
 function App() {
   const [image, setImage] = useState("");
-  const [highlight, setHighligh] = useState("");
+  const [highlight, setHighlight] = useState("");
   const [text, setText] = useState("");
   const [emails, setEmails] = useState([]);
   const [phones, setPhones] = useState([]);
   const [dates, setDates] = useState([]);
   const [creditCards, setCreditCards] = useState([])
   const [transcript, setTranscript] = useState('');
-  const [fileName, setFileName] = useState('document.pdf');
   // const [pin, setPin] = useState("");
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
@@ -24,13 +25,14 @@ function App() {
   const phoneRegex = /\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/g;
   const dateRegex = /([0-9]{4}-[0-9]{2}-[0-9]{2})/g;
   const creditCardRegex = /([0-9]{4}-){3}[0-9]{4}/g;
-
+  
   const handleChange = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]))
     // setImage(`${window.location.origin}/${event.target.files[0].name}`);
     // const image = preprocessImage(canvasObj, event.target.files[0]);
   }
-
+  
+  
   const handleClick = () => {
 
     const canvas = canvasRef.current;
@@ -65,7 +67,7 @@ function App() {
         setCreditCards(JSON.stringify(result.data.text).match(creditCardRegex))
 
         result.data.words.forEach(function(item) {
-          if ((item.text).indexOf(highlight) !== -1) {
+          if ((item.text).indexOf(transcript) !== -1) {
             // boxes.push(item.bbox)
             setBoxes([...boxes, item.bbox])
           } 
@@ -80,7 +82,6 @@ function App() {
         ;
       });
   };
-
   const handleVoiceInput = () => {
     const recognition = new window.webkitSpeechRecognition();
 
@@ -91,7 +92,7 @@ function App() {
 
     recognition.start();
   };
-
+  
 console.log(emails)
 console.log(text)
   // Extract patterns using regex
@@ -99,7 +100,36 @@ console.log(text)
 //   const phones = text.match(phoneRegex);
 //   const dates = text.match(dateRegex);
 //   const creditCards = text.match(creditCardRegex);
-  
+const styles = StyleSheet.create({
+	page: {
+		flexDirection: 'row',
+	},
+	section: {
+		flexGrow: 1,
+	},
+});
+
+const generatePDFDocument = async () => {
+  const blob = await pdf(
+    <Document>
+      <Page size="A4" style={styles.page}>
+			<View style={styles.section}>
+        {console.log(phones)}
+				<Text>  {text} </Text>
+			</View>
+			{/* <View style={styles.section}>
+				<Text>We're inside a PDF!</Text>
+			</View> */}
+		</Page>
+    </Document>
+
+    
+  ).toBlob();
+
+  console.log(blob);
+
+  saveAs(blob, "pageName");
+};
   return (
     <div className="App">
       <main className="App-main">
@@ -175,6 +205,11 @@ console.log(text)
         <div>
       <button onClick={handleVoiceInput}>Start Voice Input</button>
       <p>{transcript}</p>
+    </div>
+    <div>
+    <button onClick={() => generatePDFDocument("doc name")}>
+                Download Here Now!!
+              </button>
     </div>
       </main>
     </div>
