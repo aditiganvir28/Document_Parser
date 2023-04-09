@@ -18,7 +18,6 @@ function App() {
   // const [pin, setPin] = useState("");
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
-  const [boxes, setBoxes] = useState([]);
   // Regex patterns to search for email, phone, date, and credit card number
   const emailRegex = /([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9._-]+)/g;
   const phoneRegex = /\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/g;
@@ -63,13 +62,14 @@ function App() {
         setPhones(JSON.stringify(result.data.text).match(phoneRegex))
         setDates(JSON.stringify(result.data.text).match(dateRegex))
         setCreditCards(JSON.stringify(result.data.text).match(creditCardRegex))
-
+        const boxes =[];
         result.data.words.forEach(function(item) {
           if ((item.text).indexOf(highlight) !== -1) {
-            // boxes.push(item.bbox)
-            setBoxes([...boxes, item.bbox])
+            boxes.push(item.bbox)
+            console.log(item.text)
           } 
         });
+       
         boxes.forEach(box => {
           ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
           ctx.strokeStyle = "red";
