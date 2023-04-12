@@ -34,7 +34,37 @@ import { pdf, Document, Page,StyleSheet,View,Text } from "@react-pdf/renderer";
     // setImage(`${window.location.origin}/${event.target.files[0].name}`);
     // const image = preprocessImage(canvasObj, event.target.files[0]);
   }
-
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: 'row',
+    },
+    section: {
+      flexGrow: 1,
+    },
+  });
+  
+  const generatePDFDocument = async () => {
+    const blob = await pdf(
+      <Document>
+        <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          {console.log(phones)}
+          <Text>  {text} </Text>
+        </View>
+        {/* <View style={styles.section}>
+          <Text>We're inside a PDF!</Text>
+        </View> */}
+      </Page>
+      </Document>
+  
+  
+    ).toBlob();
+  
+    console.log(blob);
+  
+    saveAs(blob, "pageName");
+  };
+ 
   const handleClick = async () => {
 
     const canvas = canvasRef.current;
