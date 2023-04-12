@@ -7,13 +7,17 @@ import { saveAs } from "file-saver";
 import { pdf, Document, Page,StyleSheet,View,Text } from "@react-pdf/renderer";
 
 
-function App() {
+  function App() {
   const [image, setImage] = useState("");
   const [highlight, setHighlight] = useState("");
   const [text, setText] = useState("");
   const [emails, setEmails] = useState([]);
   const [phones, setPhones] = useState([]);
   const [dates, setDates] = useState([]);
+  const [extractedText, setextractedText] = useState([]);
+  const [summarizedtext, setsummarizedtext] = useState([]);
+  const [label, setclassification] = useState([]);
+  const [score, setscore] = useState([]);
   const [creditCards, setCreditCards] = useState([])
   const [transcript, setTranscript] = useState('');
   // const [pin, setPin] = useState("");
@@ -30,9 +34,8 @@ function App() {
     // setImage(`${window.location.origin}/${event.target.files[0].name}`);
     // const image = preprocessImage(canvasObj, event.target.files[0]);
   }
-  
-  
-  const handleClick = () => {
+
+  const handleClick = async () => {
 
     const canvas = canvasRef.current;
     canvas.width = imageRef.current.width;
@@ -64,11 +67,12 @@ function App() {
         setPhones(JSON.stringify(result.data.text).match(phoneRegex))
         setDates(JSON.stringify(result.data.text).match(dateRegex))
         setCreditCards(JSON.stringify(result.data.text).match(creditCardRegex))
+        setextractedText(result.data.text)
         
         const boxes = result.data.words
         .filter(item => ((item.text).indexOf(transcript) !== -1)) 
         .map(item => item.bbox);
-
+        
         boxes.forEach(box => {
           ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
           ctx.strokeStyle = "red";
@@ -79,6 +83,31 @@ function App() {
         ;
       });
   };
+  const summarize = async () => {
+    const res2 = await fetchResult(extractedText);
+        // console.log(res2[0].summary_text)
+        setsummarizedtext(res2[0].summary_text)
+        console.log(res2.result)
+  }
+  const classifytext = async () => {
+    const res2 = await textClassification(extractedText);
+        // console.log(res2[0].summary_text)
+        console.log('res2')
+        console.log(res2)
+        let highestScoreLabel = "";
+        let highestScore = 0;
+
+        res2.forEach((it) => {
+          it.forEach((item) => {
+          if (item.score > highestScore) {
+            highestScore = item.score;
+            highestScoreLabel = item.label;
+          }
+        })
+        });
+        setclassification(highestScoreLabel)
+        setscore(highestScore)
+  }
   const handleVoiceInput = () => {
     const recognition = new window.webkitSpeechRecognition();
 
@@ -97,36 +126,35 @@ function App() {
 //   const phones = text.match(phoneRegex);
 //   const dates = text.match(dateRegex);
 //   const creditCards = text.match(creditCardRegex);
-const styles = StyleSheet.create({
-	page: {
-		flexDirection: 'row',
-	},
-	section: {
-		flexGrow: 1,
-	},
-});
 
-const generatePDFDocument = async () => {
-  const blob = await pdf(
-    <Document>
-      <Page size="A4" style={styles.page}>
-			<View style={styles.section}>
-        {console.log(phones)}
-				<Text>  {text} </Text>
-			</View>
-			{/* <View style={styles.section}>
-				<Text>We're inside a PDF!</Text>
-			</View> */}
-		</Page>
-    </Document>
-
-    
-  ).toBlob();
-
-  console.log(blob);
-
-  saveAs(blob, "pageName");
-};
+const API_TOKEN='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'
+async function fetchResult(script) {
+  const response = await fetch(
+    "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
+    {
+      headers: { Authorization: `Bearer ${API_TOKEN}` },
+      method: "POST",
+      body: JSON.stringify(script),
+    }
+  );
+  const result = await response.json();
+  setsummarizedtext(result)
+  return result;
+}
+async function textClassification(script) {
+  const response = await fetch(
+    "https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english",
+    {
+      headers: { Authorization: `Bearer ${API_TOKEN}` },
+      method: "POST",
+      body: JSON.stringify(script),
+    }
+  );
+  const result = await response.json();
+  setclassification(result)
+  return result;
+}
+  
   return (
     <div className="App">
       <main className="App-main">
@@ -139,7 +167,11 @@ const generatePDFDocument = async () => {
         <canvas ref={canvasRef} width={700} height={300}></canvas>
           <h3>Extracted text</h3>
         <div className="pin-box">
-          {/* <p> {text} </p> */}
+        <p> {summarizedtext} </p> 
+        <br></br>
+        <p> Semantic classification </p> 
+        <p> {label}: {score} </p> 
+        <br></br>
           <Highlighter
     highlightClassName="YourHighlightClass"
     searchWords={[transcript]}
@@ -201,6 +233,11 @@ const generatePDFDocument = async () => {
         <button onClick={handleClick} style={{height:50}}>Convert to text</button>
         <div>
       <button onClick={handleVoiceInput}>Start Voice Input</button>
+      <br></br>
+      <button onClick={summarize}>Summarize</button>
+      <br></br>
+      <button onClick={classifytext}>classifytext</button>
+      <br></br>
       <p>{transcript}</p>
     </div>
     <div>
