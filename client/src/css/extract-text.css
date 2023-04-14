@@ -1,4 +1,4 @@
-.App {
+/* .App {
     text-align: center;
   }
   
@@ -8,7 +8,7 @@
   }
   
   .App-main {
-    background-color: #282c34;
+    background-color:rgb(21 23 25 / var(--tw-bg-opacity));;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -23,4 +23,133 @@
     color: #333;
     border-radius: 5px;
     text-align: center;
+  } */
+
+  .App{
+    width: 100%;
   }
+
+  .App-main{
+     background-color:rgb(21 23 25 / var(--tw-bg-opacity));;
+    min-height: 100vh;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    font-size: calc(7px + 2vmin);
+    color: white;
+  }
+
+  .img{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+  }
+
+  .actual-img{
+    width: 45%;
+    text-align: center;
+  }
+
+  .actual-img img{
+        width: 94%;
+    height: 60vh;
+    margin: 5%;
+    border: 2px solid white;
+    border-color: white;
+  }
+  .canvas-img{
+    width: 45%;
+    text-align: center;
+  }
+
+  .canvas-img canvas{
+        width: 94%;
+    height: 60vh;
+    margin: 5%;
+    border: 2px solid white;
+    border-color: white;
+  }
+
+  .one{
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .one input{
+    width: 40%;
+    font-size: 80%;
+  }
+
+  .one button{
+  width: 20%;
+  height: 6vh;
+  margin: 2% 0;
+  background: #5D5DFF;
+  border-radius: 8px;
+  }
+
+.text{
+  margin: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.extract-text{
+  width: 45%;
+  margin: 2%;
+}
+
+.pin-box{
+  width: 45%;
+  margin: 2%;
+}
+
+.two{
+  margin: 5%
+}
+
+.two input{
+  margin: 2%;
+  border-radius: 5px;
+}
+
+.two button{
+  width: 20%;
+  height: 6vh;
+  margin: 2% 0;
+  background: #5D5DFF;
+  border-radius: 8px;
+  }
+
+  .sum{
+    width: 25%;
+  height: 6vh;
+  margin: 2% 0;
+  background: #5D5DFF;
+  border-radius: 8px;
+  }
+
+  .sem{
+    width: 25%;
+  height: 6vh;
+  margin: 2% 0;
+  background: #5D5DFF;
+  border-radius: 8px;
+  }
+  .download{
+    text-align: right;
+    margin: 5%;
+  }
+  .down{
+    width: 20%;
+  height: 6vh;
+  margin: 2% 0;
+  background: #5D5DFF;
+  border-radius: 8px;
+  text-align: center;
+  }
+
+
+
