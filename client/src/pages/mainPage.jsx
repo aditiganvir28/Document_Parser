@@ -19,6 +19,7 @@ function main() {
     const [dates, setDates] = useState([]);
     const [extractedText, setextractedText] = useState([]);
     const [summarizedtext, setsummarizedtext] = useState([]);
+    const [words, setwords] = useState([]);
     const [label, setclassification] = useState([]);
     const [score, setscore] = useState([]);
     const [creditCards, setCreditCards] = useState([])
@@ -67,17 +68,36 @@ function main() {
 
         saveAs(blob, "pageName");
     };
-
-    const handleClick = async () => {
-
+ 
+    const handleClick2 = async () => {
         const canvas = canvasRef.current;
         canvas.width = imageRef.current.width;
         canvas.height = imageRef.current.height;
         const ctx = canvas.getContext('2d');
-
         ctx.drawImage(imageRef.current, 0, 0);
         ctx.putImageData(preprocessImage(canvas), 0, 0);
         const dataUrl = canvas.toDataURL("image/jpeg");
+        const boxes = words
+        .filter(item => ((item.text).indexOf(transcript) !== -1))
+        .map(item => item.bbox);
+
+        boxes.forEach(box => {
+            ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+    })
+    }
+    const handleClick = async () => {
+        const canvas = canvasRef.current;
+        canvas.width = imageRef.current.width;
+        canvas.height = imageRef.current.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imageRef.current, 0, 0);
+        ctx.putImageData(preprocessImage(canvas), 0, 0);
+        const dataUrl = canvas.toDataURL("image/jpeg");
+
+
 
         Tesseract.recognize(
             dataUrl, 'eng',
@@ -104,16 +124,7 @@ function main() {
 
                 setextractedText(result.data.text)
 
-                const boxes = result.data.words
-                    .filter(item => ((item.text).indexOf(transcript) !== -1))
-                    .map(item => item.bbox);
-                
-                boxes.forEach(box => {
-                    ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
-                    ctx.strokeStyle = "red";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                })
+                setwords(result.data.words)
                 const res2 = await fetchResult(result.data.text);
                 // console.log(res2[0].summary_text)
                 setsummarizedtext(res2[0].summary_text)
@@ -262,7 +273,7 @@ function main() {
                             setTranscript(event.target.value)
                         }} style={{ color: "black" }} ></input>
                         <button className='absolute ml-56 mt-2.5' onClick={handleVoiceInput}><i className="fa fa-microphone text-[#5D5DFF] relative text-2xl" aria-hidden="true"></i></button>
-                        <button className='bg-[#5D5DFF] px-2 rounded-lg text-lg font-bold' onClick={handleClick}>Search text</button>
+                        <button className='bg-[#5D5DFF] px-2 rounded-lg text-lg font-bold' onClick={handleClick2}>Search text</button>
                     </div>
                 </div>
                 <div className='flex justify-between mx-24'>
