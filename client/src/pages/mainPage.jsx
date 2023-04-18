@@ -78,16 +78,17 @@ function main() {
         ctx.drawImage(imageRef.current, 0, 0);
         ctx.putImageData(preprocessImage(canvas), 0, 0);
         const dataUrl = canvas.toDataURL("image/jpeg");
+        if(transcript.length!=0){
         const boxes = words
         .filter(item => ((item.text).indexOf(transcript) !== -1))
         .map(item => item.bbox);
-
+        
         boxes.forEach(box => {
             ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
             ctx.strokeStyle = "red";
             ctx.lineWidth = 2;
             ctx.stroke();
-    })
+    })}
     }
     const handleClick = async () => {
         const canvas = canvasRef.current;
