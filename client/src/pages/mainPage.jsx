@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
 import '../css/main.css';
+import '../css/extract-text.css'
 import Highlighter from "react-highlight-words";
 import { saveAs } from "file-saver";
 import { pdf, Document, Page, StyleSheet, View, Text } from "@react-pdf/renderer";
@@ -68,8 +69,10 @@ function main() {
         saveAs(blob, "pageName");
     };
 
-    const handleClick = async () => {
+    console.log(convertText)
 
+    const handleClick = async () => {
+        
         const canvas = canvasRef.current;
         canvas.width = imageRef.current.width;
         canvas.height = imageRef.current.height;
@@ -164,6 +167,7 @@ function main() {
         setclassification(highestScoreLabel)
         setscore(highestScore)
     }
+
     const handleVoiceInput = () => {
         const recognition = new window.webkitSpeechRecognition();
 
@@ -251,12 +255,17 @@ function main() {
                         </div>}
 
                     <div className='my-8 mx-auto flex justify-center'>
-                        <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-xl font-bold' onClick={handleClick}>Convert to Text</button>
+                        <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-xl font-bold' onClick={async()=>{
+                            await setConvertText(true);
+                            handleClick();
+                        }}>Convert to Text</button>
                     </div>
                 </div>
-            }
+}
+{convertText && 
+            
             <div className='flex flex-col'>
-                <div className='flex flex-end'>
+                <div className='flex justify-end'>
                     <div className='mx-28 my-4 flex justify-between w-96'>
                         <input type='text' placeholder="Search" className='rounded-md border-[#5D5DFF] border-2 text-black' value={transcript} onChange={(event) => {
                             setTranscript(event.target.value)
@@ -345,6 +354,7 @@ function main() {
                     <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-lg font-bold float-right' onClick={() => generatePDFDocument("doc name")} >Extract to PDF!!</button>
                 </div>
             </div>
+}
 
         </>
     )

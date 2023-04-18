@@ -7,7 +7,7 @@ import {
 
 import 'aos/dist/aos.css';
 import './css/style.css';
-import Extract from './pages/extract_text'
+// import Extract from './pages/extract_text'
 
 import AOS from 'aos';
 
@@ -43,7 +43,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/extract" element={<Extract />} />
+        {/* <Route path="/extract" element={<Extract />} /> */}
         <Route path='/main' element={<Main/>}/>
       </Routes>
     </>
