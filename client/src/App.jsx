@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
+import Main from './pages/mainPage'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/extract" element={<Extract />} />
+        <Route path='/main' element={<Main/>}/>
       </Routes>
     </>
   );

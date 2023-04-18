@@ -6,7 +6,8 @@ import Highlighter from "react-highlight-words";
 import { saveAs } from "file-saver";
 import { pdf, Document, Page, StyleSheet, View, Text } from "@react-pdf/renderer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import Header from '../partials/Header';
 
 
 
@@ -181,7 +182,10 @@ function App() {
   }
 
   return (
+    <div>
+    <Header />
     <div className="App">
+      
       <main className="App-main">
         <div className='one'>
           <input type="file" onChange={handleChange} />
@@ -285,6 +289,7 @@ function App() {
           </button>
         </div>
       </main>
+    </div>
     </div>
   );
 }
