@@ -246,12 +246,12 @@ function main() {
                             <p className='text-center'>Three</p>
                         </div>
                     </div>
-                    <div className="w-3/4 h-96 mx-auto border-2 border-dotted border-blue-500 object-content">
-                        {!imageUploaded && <div className='flex mx-72 my-36'>
-                            <div>
-                                <input type='file' className='flex items-center justify-center my-4 mx-28' onChange={handleChange}></input>
+                    <div className="w-3/4 h-96 mx-auto border-2 border-dotted border-blue-500 object-content flex justify-center">
+                        {!imageUploaded && 
+                        <div className='flex flex-col justify-center items-center'>
+                                <input type='file' className='' onChange={handleChange}></input>
                                 <h4 className='font-bold text-2xl'>Select Your Files To Parse The Data</h4>
-                            </div>
+                            
                         </div>}
                         {imageUploaded &&
                             <div className='object-content flex justify-center items-center h-100'>
@@ -274,7 +274,10 @@ function main() {
 {convertText && 
             
             <div className='flex flex-col'>
-                <div className='flex justify-end'>
+                <div className='flex justify-between'>
+                    <div className='ml-28 mt-6'>
+                        <input type='file'></input>
+                    </div>
                     <div className='mx-28 my-4 flex justify-between w-96'>
                         <input type='text' placeholder="Search" className='rounded-md border-[#5D5DFF] border-2 text-black' value={transcript} onChange={(event) => {
                             setTranscript(event.target.value)
