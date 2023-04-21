@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from '../utils/Modal';
 import {Link
 } from 'react-router-dom';
-
+import '../css/homepage.css';
 import HeroImage from '../images/hero-image-01.jpg';
 
 function HeroHome() {
@@ -44,19 +44,21 @@ function HeroHome() {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
             <h1 className="h1 mb-4" data-aos="fade-up">
-              Document Parser
+              DocSavvy
             </h1>
             <p className="text-xl text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">
             With a document parser, you can automate tedious manual processes and free up your team to focus on more strategic initiatives
             </p>
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
-                <Link to={'/main'} className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" href="#0">
+                {/* <Link to={'/main'} className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" href="#0"> */}
+                <Link to={'/main'} className="homestart_btn" href="#0">
                   Start free trial
                 </Link>
               </div>
               <div data-aos="fade-up" data-aos-delay="600">
-                <Link className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" to={'/extract'}>
+                {/* <Link className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" to={'/extract'}> */}
+                <Link className='homestart_btn'>
                   Learn more
                 </Link>
               </div>

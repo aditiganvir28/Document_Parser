@@ -20,7 +20,7 @@ function Footer() {
                   </svg>
                 </Link>
               </div>
-              <div className="text-gray-400">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</div>
+              <div className="text-gray-400">So why waste time sifting through paperwork or manually inputting data? With our document parser, you can take control of your document management and free up valuable time to focus on the things that matter most. Try it today and see the difference for yourself.</div>
             </div>
 
             {/* 2nd, 3rd and 4th blocks */}
@@ -28,60 +28,60 @@ function Footer() {
 
               {/* 2nd block */}
               <div className="text-sm">
-                <h6 className="text-gray-200 font-medium mb-1">Products</h6>
+                <h6 className="text-gray-200 font-medium mb-1">Why?</h6>
                 <ul>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Web Studio</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Streamlined document management</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">DynamicBox Flex</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Time-saving solution</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Programming Forms</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Reliable and efficient</Link>
                   </li>
                 </ul>
               </div>
 
               {/* 3rd block */}
               <div className="text-sm">
-                <h6 className="text-gray-200 font-medium mb-1">Resources</h6>
+                <h6 className="text-gray-200 font-medium mb-1">How?</h6>
                 <ul>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Nostrud exercitation</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Upload Documents</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Visual mockups</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Extract Information</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Nostrud exercitation</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Review Results</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Visual mockups</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Export Data</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Nostrud exercitation</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Automate Processes</Link>
                   </li>
                 </ul>
               </div>
 
               {/* 4th block */}
               <div className="text-sm">
-                <h6 className="text-gray-200 font-medium mb-1">Company</h6>
+                <h6 className="text-gray-200 font-medium mb-1">When?</h6>
                 <ul>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Consectetur adipiscing</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Streamline Workflows</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Labore et dolore</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Improve Efficiency</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Consectetur adipiscing</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Organize Documents</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Labore et dolore</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Reduce Errors</Link>
                   </li>
                   <li className="mb-1">
-                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Consectetur adipiscing</Link>
+                    <Link to="#" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">Analyze Data</Link>
                   </li>
                 </ul>
               </div>
@@ -135,7 +135,7 @@ function Footer() {
             </ul>
 
             {/* Copyrights note */}
-            <div className="text-gray-400 text-sm mr-4">&copy; Cruip.com. All rights reserved.</div>
+            <div className="text-gray-400 text-sm mr-4">&copy; DocSavvy.com. All rights reserved.</div>
 
           </div>
 

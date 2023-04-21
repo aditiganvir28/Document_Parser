@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useRef } from 'react';
 import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
@@ -8,7 +9,8 @@ import { saveAs } from "file-saver";
 import { pdf, Document, Page, StyleSheet, View, Text } from "@react-pdf/renderer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Header from '../partials/Header';
-import Speech from 'react-speech';
+import  useSpeechSynthesis from "react-speech-kit";
+
 // import img from '../images/plain-text-01.jpg'
 function main() {
     const [imageUploaded, setImageUploaded] = useState(false)
@@ -35,6 +37,11 @@ function main() {
     const dateRegex = /([0-9]{4}-[0-9]{2}-[0-9]{2})/g;
     const creditCardRegex = /([0-9]{4}-){3}[0-9]{4}/g;
 
+    const handletts =(event) =>{
+        const msg = new SpeechSynthesisUtterance()
+        msg.text = summarizedtext
+        window.speechSynthesis.speak(msg);
+}
     const handleChange = (event) => {
         setImgUrl(URL.createObjectURL(event.target.files[0]))
         setImageUploaded(true)
@@ -377,6 +384,7 @@ function main() {
 
                         <br></br>
                         <h1 className='text-xl text-bold text-[#fec80a]'>Semantic Classification : <p className='text-white text-base'>{label}: {score}</p></h1>
+                        <button onClick={handletts}>Text to Speech</button>
                     </div>
                 </div>
                 <div className='m-4 mr-28'>

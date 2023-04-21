@@ -23,7 +23,7 @@ function FeaturesBlocks() {
                 <path className="stroke-current text-purple-300" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
               </svg>
               <h4 className="h4 mb-2">Data extraction</h4>
-              <p className="text-lg text-gray-400 text-center">A document parser should be able to identify and extract specific data points, such as names, dates, and addresses.</p>
+              <p className="text-lg text-gray-400 text-center">It will identify and extract specific data points, such as names, dates, and addresses.</p>
             </div>
 
             {/* 2nd item */}
@@ -33,8 +33,8 @@ function FeaturesBlocks() {
                 <path className="stroke-current text-purple-100" strokeWidth="2" strokeLinecap="square" d="M21 23h22v18H21z" fill="none" fillRule="evenodd" />
                 <path className="stroke-current text-purple-300" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
               </svg>
-              <h4 className="h4 mb-2">Keyword search</h4>
-              <p className="text-lg text-gray-400 text-center">A document parser can allow users to search for specific keywords or phrases within a document</p>
+              <h4 className="h4 mb-2">Efficient Keyword Search</h4>
+              <p className="text-lg text-gray-400 text-center">It allow users to search for specific keywords or phrases within a document making it easy to find what user need quickly and efficiently.</p>
             </div>
 
             {/* 3rd item */}
@@ -48,11 +48,11 @@ function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="h4 mb-2">Summarization</h4>
-              <p className="text-lg text-gray-400 text-center"> A document parser can generate a summary of a document, which can be useful for quickly understanding the main points</p>
+              <p className="text-lg text-gray-400 text-center"> It generates a summary of a document, which can be useful for quickly understanding the main points</p>
             </div>
 
             {/* 4th item */}
-            {/* <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="300" data-aos-anchor="[data-aos-id-blocks]">
+            <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="300" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
                 <g transform="translate(22 21)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
@@ -60,12 +60,12 @@ function FeaturesBlocks() {
                   <circle className="stroke-current text-purple-300" cx="13" cy="9" r="3" />
                 </g>
               </svg>
-              <h4 className="h4 mb-2">Instant Features</h4>
-              <p className="text-lg text-gray-400 text-center">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
-            </div> */}
+              <h4 className="h4 mb-2">Sentiment Analysis</h4>
+              <p className="text-lg text-gray-400 text-center">It can perform sentiment analysis on text, providing insights into the emotional tone of the document.</p>
+            </div>
 
             {/* 5th item */}
-            {/* <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="400" data-aos-anchor="[data-aos-id-blocks]">
+            <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="400" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
                 <g strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
@@ -73,12 +73,12 @@ function FeaturesBlocks() {
                   <path className="stroke-current text-purple-300" d="M22 30h4v12h-4z" />
                 </g>
               </svg>
-              <h4 className="h4 mb-2">Instant Features</h4>
-              <p className="text-lg text-gray-400 text-center">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
-            </div> */}
+              <h4 className="h4 mb-2">Voice Input</h4>  
+              <p className="text-lg text-gray-400 text-center">It allows the user to search in extracted data and documents for any keyword</p>
+            </div>
 
             {/* 6th item */}
-            {/* <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="500" data-aos-anchor="[data-aos-id-blocks]">
+            <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="500" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
                 <g transform="translate(21 22)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
@@ -87,9 +87,9 @@ function FeaturesBlocks() {
                   <path className="stroke-current text-purple-100" d="M8.86 1.18C3.8 1.988 0 5.6 0 10c0 5 4.9 9 11 9a10.55 10.55 0 003.1-.4L20 21l-.6-5.2a9.125 9.125 0 001.991-2.948" />
                 </g>
               </svg>
-              <h4 className="h4 mb-2">Instant Features</h4>
-              <p className="text-lg text-gray-400 text-center">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
-            </div> */}
+              <h4 className="h4 mb-2">Effortless PDF Creation</h4>
+              <p className="text-lg text-gray-400 text-center">It exports extracted data to PDF format easily and quickly, making it simple for users to create professional reports and share insights.</p>
+            </div>
 
           </div>
 
