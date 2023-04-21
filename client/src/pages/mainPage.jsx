@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
 import '../css/main.css';
+import '../css/extract-text.css'
 import Highlighter from "react-highlight-words";
 import { saveAs } from "file-saver";
 import { pdf, Document, Page, StyleSheet, View, Text } from "@react-pdf/renderer";
@@ -19,6 +20,7 @@ function main() {
     const [dates, setDates] = useState([]);
     const [extractedText, setextractedText] = useState([]);
     const [summarizedtext, setsummarizedtext] = useState([]);
+    const [words, setwords] = useState([]);
     const [label, setclassification] = useState([]);
     const [score, setscore] = useState([]);
     const [creditCards, setCreditCards] = useState([])
@@ -67,17 +69,37 @@ function main() {
 
         saveAs(blob, "pageName");
     };
-
-    const handleClick = async () => {
-
+ 
+    const handleClick2 = async () => {
         const canvas = canvasRef.current;
         canvas.width = imageRef.current.width;
         canvas.height = imageRef.current.height;
         const ctx = canvas.getContext('2d');
-
         ctx.drawImage(imageRef.current, 0, 0);
         ctx.putImageData(preprocessImage(canvas), 0, 0);
         const dataUrl = canvas.toDataURL("image/jpeg");
+        if(transcript.length!=0){
+        const boxes = words
+        .filter(item => ((item.text).indexOf(transcript) !== -1))
+        .map(item => item.bbox);
+        
+        boxes.forEach(box => {
+            ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+    })}
+    }
+    const handleClick = async () => {
+        const canvas = canvasRef.current;
+        canvas.width = imageRef.current.width;
+        canvas.height = imageRef.current.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imageRef.current, 0, 0);
+        ctx.putImageData(preprocessImage(canvas), 0, 0);
+        const dataUrl = canvas.toDataURL("image/jpeg");
+
+
 
         Tesseract.recognize(
             dataUrl, 'eng',
@@ -104,16 +126,7 @@ function main() {
 
                 setextractedText(result.data.text)
 
-                const boxes = result.data.words
-                    .filter(item => ((item.text).indexOf(transcript) !== -1))
-                    .map(item => item.bbox);
-
-                boxes.forEach(box => {
-                    ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
-                    ctx.strokeStyle = "red";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                })
+                setwords(result.data.words)
                 const res2 = await fetchResult(result.data.text);
                 // console.log(res2[0].summary_text)
                 setsummarizedtext(res2[0].summary_text)
@@ -164,6 +177,7 @@ function main() {
         setclassification(highestScoreLabel)
         setscore(highestScore)
     }
+
     const handleVoiceInput = () => {
         const recognition = new window.webkitSpeechRecognition();
 
@@ -288,18 +302,23 @@ function main() {
                         </div>}
 
                     <div className='my-8 mx-auto flex justify-center'>
-                        <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-xl font-bold' onClick={handleClick}>Convert to Text</button>
+                        <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-xl font-bold' onClick={async()=>{
+                            await setConvertText(true);
+                            handleClick();
+                        }}>Convert to Text</button>
                     </div>
                 </div>
-            }
+}
+{convertText && 
+            
             <div className='flex flex-col'>
-                <div className='flex flex-end'>
+                <div className='flex justify-end'>
                     <div className='mx-28 my-4 flex justify-between w-96'>
                         <input type='text' placeholder="Search" className='rounded-md border-[#5D5DFF] border-2 text-black' value={transcript} onChange={(event) => {
                             setTranscript(event.target.value)
                         }} style={{ color: "black" }} ></input>
                         <button className='absolute ml-56 mt-2.5' onClick={handleVoiceInput}><i className="fa fa-microphone text-[#5D5DFF] relative text-2xl" aria-hidden="true"></i></button>
-                        <button className='bg-[#5D5DFF] px-2 rounded-lg text-lg font-bold' onClick={handleClick}>Search text</button>
+                        <button className='bg-[#5D5DFF] px-2 rounded-lg text-lg font-bold' onClick={handleClick2}>Search text</button>
                     </div>
                 </div>
                 <div className='flex justify-between mx-24'>
@@ -382,6 +401,7 @@ function main() {
                     <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-lg font-bold float-right' onClick={() => generatePDFDocument("doc name")} >Extract to PDF!!</button>
                 </div>
             </div>
+}
 
         </>
     )
