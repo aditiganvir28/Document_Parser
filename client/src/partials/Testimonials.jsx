@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../css/Testimonials.css'
 import TestimonialImage01 from '../images/testimonial-01.jpg';
 import TestimonialImage02 from '../images/testimonial-02.jpg';
 import TestimonialImage03 from '../images/testimonial-03.jpg';
@@ -12,15 +12,15 @@ function Testimonials() {
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 mb-4">Don't take our word for it</h2>
-            <p className="text-xl text-gray-400">Vitae aliquet nec ullamcorper sit amet risus nullam eget felis semper quis lectus nulla at volutpat diam ut venenatis tellus—in ornare.</p>
+            <h2 className="h2 mb-4">Meet the team</h2>
+            <p className="text-xl text-gray-400">We are a team of passionate students dedicated to providing innovative solutions using the latest technology. With diverse backgrounds, we bring a unique perspective to problem-solving.</p>
           </div>
 
           {/* Testimonials */}
-          <div className="max-w-sm mx-auto grid gap-8 lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none">
+          <div className="max-w-sm mx-auto grid gap-1 lg:grid-cols-4 lg:gap-6 items-start lg:max-w-none">
 
             {/* 1st testimonial */}
-            <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up">
+            {/* <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up">
               <div>
                 <div className="relative inline-flex flex-col mb-4">
                   <img className="rounded-full" src={TestimonialImage01} width="48" height="48" alt="Testimonial 01" />
@@ -33,10 +33,21 @@ function Testimonials() {
                 <div className="text-gray-700 font-medium mt-6 pt-5 border-t border-gray-700">
                   <cite className="text-gray-200 not-italic">Anastasia Dan</cite> - <a className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out" href="#0">UX Board</a>
                 </div>
-              </div>
-
+              </div> */}
+             <div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <p class="title">FLIP CARD</p>
+            <p>Hover Me</p>
+        </div>
+        <div class="flip-card-back">
+            <p class="title">BACK</p>
+            <p>Leave Me</p>
+        </div>
+    </div>
+</div>
               {/* 2nd testimonial */}
-              <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="200">
+              {/* <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="200">
                 <div>
                   <div className="relative inline-flex flex-col mb-4">
                     <img className="rounded-full" src={TestimonialImage02} width="48" height="48" alt="Testimonial 02" />
@@ -49,10 +60,46 @@ function Testimonials() {
                   <div className="text-gray-700 font-medium mt-6 pt-5 border-t border-gray-700">
                     <cite className="text-gray-200 not-italic">Anastasia Dan</cite> - <a className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out" href="#0">UX Board</a>
                   </div>
-                </div>
-
+                </div> */}
+                       <div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <p class="title">FLIP CARD</p>
+            <p>Hover Me</p>
+        </div>
+        <div class="flip-card-back">
+            <p class="title">BACK</p>
+            <p>Leave Me</p>
+        </div>
+    </div>
+</div>
                 {/* 3rd testimonial */}
-                <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="400">
+                <div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <p class="title">FLIP CARD</p>
+            <p>Hover Me</p>
+        </div>
+        <div class="flip-card-back">
+            <p class="title">BACK</p>
+            <p>Leave Me</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <p class="title">FLIP CARD</p>
+            <p>Hover Me</p>
+        </div>
+        <div class="flip-card-back">
+            <p class="title">BACK</p>
+            <p>Leave Me</p>
+        </div>
+    </div>
+</div>
+                {/* <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="400">
                   <div>
                     <div className="relative inline-flex flex-col mb-4">
                       <img className="rounded-full" src={TestimonialImage03} width="48" height="48" alt="Testimonial 03" />
@@ -65,7 +112,7 @@ function Testimonials() {
                     <div className="text-gray-700 font-medium mt-6 pt-5 border-t border-gray-700">
                       <cite className="text-gray-200 not-italic">Anastasia Dan</cite> - <a className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out" href="#0">UX Board</a>
                     </div>
-                  </div>
+                  </div> */}
 
                 </div>
 
