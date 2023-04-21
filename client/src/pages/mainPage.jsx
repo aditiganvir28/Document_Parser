@@ -9,7 +9,7 @@ import { saveAs } from "file-saver";
 import { pdf, Document, Page, StyleSheet, View, Text } from "@react-pdf/renderer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Header from '../partials/Header';
-import  useSpeechSynthesis from "react-speech-kit";
+import { useSpeechSynthesis } from "react-speech-kit";
 
 // import img from '../images/plain-text-01.jpg'
 function main() {
@@ -38,11 +38,18 @@ function main() {
     const phoneRegex = /\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/g;
     const dateRegex = /([0-9]{4}-[0-9]{2}-[0-9]{2})/g;
     const creditCardRegex = /([0-9]{4}-){3}[0-9]{4}/g;
-
+    const { speak, cancel, speaking, supported } = useSpeechSynthesis();
+    const voices={
+        default: true,
+        lang: "en-AU",
+        localService: true,
+        name: "Karen",
+        voiceURI: "Karen",
+      }
     const handletts =(event) =>{
         const msg = new SpeechSynthesisUtterance()
         msg.text = summarizedtext
-        window.speechSynthesis.speak(msg);
+        window.speechSynthesis.speak(msg,voices);
 }
     const handleChange = (event) => {
         console.log(event)
@@ -402,6 +409,7 @@ function main() {
                         <br></br>
                         <h1 className='text-xl text-bold text-[#fec80a]'>Semantic Classification : <p className='text-white text-base'>{label}: {score}</p></h1>
                         <button onClick={handletts}>Text to Speech</button>
+                        <button onClick={cancel}>Stop</button>
                     </div>
                 </div>
                 <div className='m-4 mr-28'>
