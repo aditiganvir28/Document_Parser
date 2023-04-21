@@ -78,16 +78,17 @@ function main() {
         ctx.drawImage(imageRef.current, 0, 0);
         ctx.putImageData(preprocessImage(canvas), 0, 0);
         const dataUrl = canvas.toDataURL("image/jpeg");
+        if(transcript.length!=0){
         const boxes = words
         .filter(item => ((item.text).indexOf(transcript) !== -1))
         .map(item => item.bbox);
-
+        
         boxes.forEach(box => {
             ctx.rect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
             ctx.strokeStyle = "red";
             ctx.lineWidth = 2;
             ctx.stroke();
-    })
+    })}
     }
     const handleClick = async () => {
         const canvas = canvasRef.current;
@@ -223,7 +224,7 @@ function main() {
             </div>
             {!convertText &&
                 <div>
-                    <div className='flex justify-between mx-44 my-10'>
+                    {/* <div className='flex justify-between mx-44 my-10'>
                         <div className='flex flex-col justify-center'>
                             <div>
                                 <p className="absolute z-2 ml-4 mt-2">1</p>
@@ -245,13 +246,50 @@ function main() {
                             </div>
                             <p className='text-center'>Three</p>
                         </div>
+                    </div> */}
+                    <div className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none" data-aos-id-blocks>
+                        {/* 1st item */}
+                        <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-anchor="[data-aos-id-blocks]">
+                            <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
+                                <path className="stroke-current text-purple-100" d="M30 39.313l-4.18 2.197L27 34.628l-5-4.874 6.91-1.004L32 22.49l3.09 6.26L42 29.754l-3 2.924" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd" />
+                                <path className="stroke-current text-purple-300" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
+                            </svg>
+                            <h4 className="h4 mb-2">Instant Features</h4>
+                            <p className="text-lg text-gray-400 text-center">Upload Document</p>
+                        </div>
+
+                        {/* 2nd item */}
+                        <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="100" data-aos-anchor="[data-aos-id-blocks]">
+                            <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <circle className="fill-current text-purple-600" cx="32" cy="32" r="32" />
+                                <path className="stroke-current text-purple-100" strokeWidth="2" strokeLinecap="square" d="M21 23h22v18H21z" fill="none" fillRule="evenodd" />
+                                <path className="stroke-current text-purple-300" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
+                            </svg>
+                            <h4 className="h4 mb-2">Instant Features</h4>
+                            <p className="text-lg text-gray-400 text-center">Extract to Text</p>
+                        </div>
+
+                        {/* 3rd item */}
+                        <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="200" data-aos-anchor="[data-aos-id-blocks]">
+                            <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
+                                <g transform="translate(21 21)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
+                                    <ellipse className="stroke-current text-purple-300" cx="11" cy="11" rx="5.5" ry="11" />
+                                    <path className="stroke-current text-purple-100" d="M11 0v22M0 11h22" />
+                                    <circle className="stroke-current text-purple-100" cx="11" cy="11" r="11" />
+                                </g>
+                            </svg>
+                            <h4 className="h4 mb-2">Instant Features</h4>
+                            <p className="text-lg text-gray-400 text-center">Download pdf</p>
+                        </div>
                     </div>
-                    <div className="w-3/4 h-96 mx-auto border-2 border-dotted border-blue-500 object-content flex justify-center">
-                        {!imageUploaded && 
-                        <div className='flex flex-col justify-center items-center'>
-                                <input type='file' className='' onChange={handleChange}></input>
-                                <h4 className='font-bold text-2xl'>Select Your Files To Parse The Data</h4>
-                            
+                    <div className="w-3/4 h-96 mx-auto border-2 border-dotted border-blue-500 object-content lg:gap-16">
+                        {!imageUploaded && <div className='flex mx-72 my-36'>
+                            <div>
+                                <input type='file' className='flex items-center justify-center my-4 mx-28' onChange={handleChange}></input>
+                                <h4 className='font-bold text-2xl '>Select Your Files To Parse The Data</h4>
+                            </div>
                         </div>}
                         {imageUploaded &&
                             <div className='object-content flex justify-center items-center h-100'>
@@ -301,7 +339,7 @@ function main() {
                 </div>
                 <div className='mx-24 flex justify-between'>
                     <div className='w-5/6'>
-                        <h1 className='text-2xl text-bold text-[#5D5DFF]'>Extracted Text :</h1>
+                        <h1 className='text-2xl text-bold text-[#fec80a]'>Extracted Text :</h1>
                         <p className='pr-2'> <Highlighter
                             highlightClassName="YourHighlightClass"
                             searchWords={[transcript]}
@@ -310,14 +348,14 @@ function main() {
                         /></p>
                     </div>
                     <div className='w-5/6 ml-28'>
-                        <h1 className='text-2xl text-bold text-[#5D5DFF] '>Summarized Text :</h1>
+                        <h1 className='text-2xl text-bold text-[#fec80a] '>Summarized Text :</h1>
                         <p className='pr-2'>{summarizedtext}</p>
                         <br></br>
                         {text.length !== 0 &&
                             <>
                                 {emails &&
                                     <>
-                                        <h1 className='text-xl text-bold text-[#5D5DFF]'>Emails:</h1>
+                                        <h1 className='text-xl text-bold text-[#fec80a]'>Emails:</h1>
                                         <ul className='pr-2'>
                                             {emails.map((email, index) => (
                                                 <li key={index}>{email}</li>
@@ -327,7 +365,7 @@ function main() {
                                 }
                                 {phones &&
                                     <>
-                                        <h1 className='text-xl text-bold text-[#5D5DFF]'>Phone Numbers:</h1>
+                                        <h1 className='text-xl text-bold text-[#fec80a]'>Phone Numbers:</h1>
                                         <ul className='pr-2'>
                                             {phones.map((phone, index) => (
                                                 <li key={index}>{phone}</li>
@@ -337,7 +375,7 @@ function main() {
                                 }
                                 {dates &&
                                     <>
-                                        <h1 className='text-xl text-bold text-[#5D5DFF]'>Dates:</h1>
+                                        <h1 className='text-xl text-bold text-[#fec80a]'>Dates:</h1>
                                         <ul className='pr-2'>
                                             {dates.map((date, index) => (
                                                 <li key={index}>{date}</li>
@@ -347,7 +385,7 @@ function main() {
                                 }
                                 {creditCards &&
                                     <>
-                                        <h1 className='text-xl text-bold text-[#5D5DFF]'>Credit Card Numbers:</h1>
+                                        <h1 className='text-xl text-bold text-[#fec80a]'>Credit Card Numbers:</h1>
                                         <ul className='pr-2'>
                                             {creditCards.map((creditCard, index) => (
                                                 <li key={index}>{creditCard}</li>
@@ -359,7 +397,7 @@ function main() {
                         }
 
                         <br></br>
-                        <h1 className='text-xl text-bold text-[#5D5DFF]'>Semantic Classification : <p className='text-white text-base'>{label}: {score}</p></h1>
+                        <h1 className='text-xl text-bold text-[#fec80a]'>Semantic Classification : <p className='text-white text-base'>{label}: {score}</p></h1>
                     </div>
                 </div>
                 <div className='m-4 mr-28'>
