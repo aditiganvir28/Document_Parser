@@ -6,6 +6,8 @@
   font-family: sans-serif;
 }
 
+
+
 .title {
   font-size: 1.5em;
   font-weight: 900;
@@ -41,14 +43,24 @@
 }
 
 .flip-card-front {
-  background: linear-gradient(120deg, #36a269 10%,#36a269 60%,
-  #36a269 60%, #36a269 60%);
+  background: linear-gradient(120deg, #492538 10%,#492538 60%,
+  #492538 60%, #492538 60%);
   color: rgb(0, 0, 0);
 }
 
+.flip-card-front img{
+
+  position: relative;
+  border-top-left-radius: 9%;
+  border-top-right-radius: 9%;
+  margin-top: -15%;
+  width: 100%;
+  height: 200px;
+}
+
 .flip-card-back {
-  background: linear-gradient(120deg, #36a269 30%, #36a269 88%,
-  #36a269 40%, #36a269 78%);
+  background: linear-gradient(120deg, #492538 30%, #492538 88%,
+  #492538 40%, #492538 78%);
   color: white;
   transform: rotateY(180deg);
 }
