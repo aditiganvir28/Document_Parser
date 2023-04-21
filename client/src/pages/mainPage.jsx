@@ -30,6 +30,8 @@ function main() {
     const [transcript, setTranscript] = useState('');
     const canvasRef = useRef(null);
     const imageRef = useRef(null);
+    const [loading, setLoadin] = useState(false)
+    const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
     // Regex patterns to search for email, phone, date, and credit card number
     const emailRegex = /([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9._-]+)/g;
@@ -43,10 +45,16 @@ function main() {
         window.speechSynthesis.speak(msg);
 }
     const handleChange = (event) => {
+        console.log(event)
         setImgUrl(URL.createObjectURL(event.target.files[0]))
         setImageUploaded(true)
     }
-
+    const handleImageLoad = (event) => {
+        console.log(event.target)
+        const { naturalWidth: width, naturalHeight: height } = event.target;
+        setImageSize({ width, height });
+      };
+    console.log(imageSize)
     const styles = StyleSheet.create({
         page: {
             flexDirection: 'row',
@@ -77,11 +85,13 @@ function main() {
 
         saveAs(blob, "pageName");
     };
+
+    console.log(imageRef)
  
     const handleClick2 = async () => {
         const canvas = canvasRef.current;
-        canvas.width = imageRef.current.width;
-        canvas.height = imageRef.current.height;
+        canvas.width = imageSize.width;
+        canvas.height = imageSize.height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(imageRef.current, 0, 0);
         ctx.putImageData(preprocessImage(canvas), 0, 0);
@@ -100,8 +110,8 @@ function main() {
     }
     const handleClick = async () => {
         const canvas = canvasRef.current;
-        canvas.width = imageRef.current.width;
-        canvas.height = imageRef.current.height;
+        canvas.width = imageSize.width;
+        canvas.height = imageSize.height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(imageRef.current, 0, 0);
         ctx.putImageData(preprocessImage(canvas), 0, 0);
@@ -110,7 +120,7 @@ function main() {
 
 
         Tesseract.recognize(
-            dataUrl, 'eng',
+            imagUrl, 'eng',
             {
                 // logger: m => console.log(m)
             }
@@ -227,10 +237,13 @@ function main() {
 
     return (
         <>
+        {loading &&
+        <div>Loading...</div>
+        }
             <div className='h-12'>
                 <Header />
             </div>
-            {!convertText &&
+            {!convertText && !loading &&
                 <div>
                     <div className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none" data-aos-id-blocks>
                         {/* 1st item */}
@@ -275,23 +288,27 @@ function main() {
                         </div>}
                         {imageUploaded &&
                             <div className='object-content flex justify-center items-center h-100'>
-                                <img src={imagUrl} className='object-content h-96'></img>
+                                <img src={imagUrl} onLoad={handleImageLoad} className='object-content h-96'></img>
                             </div>}
                     </div>
                     {imageUploaded &&
                         <div className='flex felx-end mx-40 mt-4'>
-                            <input type='file' onChange={handleChange}></input>
+                            <input type='file' onChange={handleChange} ></input>
                         </div>}
 
                     <div className='my-8 mx-auto flex justify-center'>
                         <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-xl font-bold' onClick={async()=>{
                             await setConvertText(true);
                             handleClick();
+                            // setLoadin(true);
+                            // setTimeout(()=>{
+                            //     setLoadin(false)
+                            // }, 3000 )
                         }}>Convert to Text</button>
                     </div>
                 </div>
 }
-{convertText && 
+{convertText && !loading &&
             
             <div className='flex flex-col'>
                 <div className='flex justify-between'>
