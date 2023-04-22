@@ -5,6 +5,8 @@
 - [Introduction](#Introduction)
 - [Run Locally](#Run-Locally)
 - [Features](#Features)
+- [Tech Stacks & Libraries](#Tech-Stacks-&-Libraries)
+- [Model API's](#Model-API's)
 
 ---
 ### **Introduction**
@@ -33,5 +35,21 @@ npm run dev
 - Extracted text to Speech Conversion
 - Exporting the information to a pdf document which can be downloaded by the user 
 
+
+---
+
+### **Tech Stacks & Libraries**
+- ReactJS
+- Hyper Text Markup Language (HTML)
+- Cascading Style Sheets (CSS)
+- Javascript
+- NodeJS
+- Tesseract.js
+- React-pdf, React-speech, React-speech-kit
+
+--- 
+### **Model API's**
+- [BART model](https://huggingface.co/facebook/bart-large-cnn)
+- [DistilBERT base uncased finetuned SST-2](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english)
 
 ---
