@@ -600,17 +600,17 @@ function main() {
                                 </>
                             }
 
-                            <br></br>
-                            <h1 className='text-xl text-bold text-[#fec80a]'>Semantic Classification : <p className='text-white text-base'>{label}: {score}</p></h1>
-                            <button onClick={handletts}>Text to Speech</button>
-                            <button onClick={cancel}>Stop</button>
-                        </div>
-                    </div>
-                    <div className='m-4 mr-28'>
-                        <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-lg font-bold float-right' onClick={() => generatePDFDocument("doc name")} >Extract to PDF!!</button>
+                        <br></br>
+                        <h1 className='text-xl text-bold text-[#fec80a]'>Sentiment Classification : <p className='text-white text-base'>{label}: {score}</p></h1>
+                        <button onClick={handletts}>Text to Speech</button>
+                        <button onClick={cancel}>Stop</button>
                     </div>
                 </div>
-            }
+                <div className='m-4 mr-28'>
+                    <button className='bg-[#5D5DFF] px-8 py-2 rounded-lg text-lg font-bold float-right' onClick={() => generatePDFDocument("doc name")} >Extract to PDF!!</button>
+                </div>
+            </div>
+}
 
         </>
     )
