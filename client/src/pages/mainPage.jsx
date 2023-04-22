@@ -404,6 +404,8 @@ function main() {
     //     }
     // }, [])
 
+    console.log("reached")
+
     const API_TOKEN = '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'
     async function fetchResult(script) {
         const response = await fetch(
