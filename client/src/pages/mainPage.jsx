@@ -158,7 +158,7 @@ function main() {
                                 </View>
                             </>
                         }
-                        <Text style={styles.h1}>Semantic Classification:</Text>
+                        <Text style={styles.h1}>Sentiment Classification:</Text>
                         <Text style={styles.p}>{label} : {score}</Text>
                     </View>
                 </Page>
