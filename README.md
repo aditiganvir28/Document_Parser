@@ -5,6 +5,11 @@
 - [Introduction](#Introduction)
 - [Run Locally](#Run-Locally)
 - [Features](#Features)
+- [Tech Stacks & Libraries](#Tech-Stacks-&-Libraries)
+- [Model API's](#Model-API's)
+- [Acknowledgement](#Acknowledgement)
+- [Team Members](#Team-Members)
+- [References](#References)
 
 ---
 ### **Introduction**
@@ -27,7 +32,7 @@ npm run dev
 - Text extraction from image/pdf
 - Extraction of emails, phone numbers
 - Summarization of extracted text 
-- Semantic classification of text into classes: positive and negative 
+- Sentiment classification of text into classes: positive and negative 
 - Highlighting location of input word/phrase in extracted text as well as in the input image through formation of bounding boxes in all its appearances
 - Voice input for search function
 - Extracted text to Speech Conversion
@@ -35,3 +40,34 @@ npm run dev
 
 
 ---
+
+### **Tech Stacks & Libraries**
+- ReactJS
+- Hyper Text Markup Language (HTML)
+- Cascading Style Sheets (CSS)
+- Javascript
+- NodeJS
+- Tesseract.js
+- React-pdf, React-speech, React-speech-kit
+
+--- 
+### **Model API's**
+- [BART model](https://huggingface.co/facebook/bart-large-cnn)
+- [DistilBERT base uncased finetuned SST-2](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english)
+
+---
+
+### **Acknowledgement**
+This software project was developed as a part of the course CS258(Software Management) under the guidance of Dr.Puneet Gupta, Assistant Professor Discipline of Computer Science and Engineering at IIT Indore.
+
+---
+### **Team Members**
+Group-15
+1. [Aditi Ganvir](https://github.com/AditiGanvir)(210001016)
+2. [Prajakta Darade](https://github.com/prajakta-1527)(210001052)
+3. [Princy Sondarva](https://github.com/2pri8ncy)(210001068)
+4. [Tanisha Sahu](https://github.com/10isha)(210001071)
+
+---
+### **References**
+- https://tesseract.projectnaptha.com
