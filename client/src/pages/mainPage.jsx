@@ -360,7 +360,6 @@ function main() {
                     <div className='w-5/6 ml-28'>
                         <h1 className='text-2xl text-bold text-[#fec80a] '>Summarized Text :</h1>
                         <p className='pr-2'>{summarizedtext}</p>
-                        <i class="fa-sharp fa-light fa-volume-high"></i>
                         <br></br>
                         {text.length !== 0 &&
                             <>
