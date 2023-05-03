@@ -2,7 +2,7 @@ import React from 'react';
 
 import FeatImage01 from '../images/home.png';
 import FeatImage02 from '../images/seocnd.png';
-import FeatImage03 from '../images/features-03-image-03.png';
+import FeatImage03 from '../images/pdfss.png';
 
 function FeaturesZigzag() {
   return (
