@@ -9,6 +9,7 @@
 - [Model API's](#Model-API's)
 - [Acknowledgement](#Acknowledgement)
 - [Team Members](#Team-Members)
+- [Link to SRS](#Link-to-SRS)
 - [References](#References)
 
 ---
@@ -69,5 +70,10 @@ Group-15
 4. [Tanisha Sahu](https://github.com/10isha)(210001071)
 
 ---
+### **Link to SRS**
+- [SRS Document](https://www.overleaf.com/read/mkjwhshmgdgp)
+
+---
+
 ### **References**
 - https://tesseract.projectnaptha.com
