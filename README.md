@@ -74,6 +74,11 @@ Group-15
 - [SRS Document](https://www.overleaf.com/read/mkjwhshmgdgp)
 
 ---
+### **Images**
+<img width="600" src="https://github.com/aditiganvir28/Document_Parser/assets/107802412/6d957dc8-f08c-4270-a470-911e7d5a7d0a">
+<br></br>
+<img width="600" src="https://github.com/aditiganvir28/Document_Parser/assets/107802412/c025e995-3469-4355-a6d8-4c95f677748e">
+
 
 ### **References**
 - https://tesseract.projectnaptha.com
