@@ -47,7 +47,6 @@ npm run dev
 - Hyper Text Markup Language (HTML)
 - Cascading Style Sheets (CSS)
 - Javascript
-- NodeJS
 - Tesseract.js
 - React-pdf, React-speech, React-speech-kit
 
